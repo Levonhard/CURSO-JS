@@ -1,0 +1,106 @@
+<div wm-slider>
+    <p>
+        <img src="http://files.cod3r.com.br/curso-web/imagem1.jpg"
+            alt="Muro da Cidade"
+            width="513" height="342"
+            title="Muro da Cidade por Tarso Bessa">
+    </p>
+    
+    <p>
+        <img src="http://files.cod3r.com.br/curso-web/imagem2.gif"
+            alt="Intro Cod3r" height="342">
+    </p>
+    
+    <p class="circular">
+        <img src="http://files.cod3r.com.br/curso-web/imagem3.png"
+            alt="Rio de Janeiro" height="342">
+    </p>
+    
+    <p class="texto">
+        <img src="http://files.cod3r.com.br/curso-web/avatar.jpg"
+            alt="Avatar" height="50" align="left">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...
+    </p>
+    
+    <p class="cidade"></p>
+    
+    <p>
+        <picture>
+            <source srcset="http://files.cod3r.com.br/curso-web/logo-larga.png"
+                media="(min-width: 600px)">
+            <img src="http://files.cod3r.com.br/curso-web/logo-estreita.png" alt="Logo">
+        </picture>
+    </p>
+</div>
+
+
+<style>
+    p {
+        position: absolute;
+        display: none;
+    }
+
+    .circular {
+        width: 513px;
+        background-color: #444;
+    }
+
+    .texto {
+        width: 400px;
+    }
+
+    .texto img {
+        margin-right: 10px;
+    }
+
+    .cidade {
+        width: 513px;
+        height: 342px;
+        background-image: url("http://files.cod3r.com.br/curso-web/imagem4.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 200%;
+    }
+</style>
+
+<script>
+    const tamanhoSlider = document.querySelector('[wm-slider]').offsetWidth
+
+    const imagem = []
+    document.querySelectorAll('p').forEach((e, i) => {
+        imagem[i] = e
+    })
+
+    function move(slider) {
+        let id = null
+        slider.style.display = 'initial'
+        let pos = (0 - slider.offsetWidth)
+        clearInterval(id)
+        id = setInterval(frame, 8)
+        function frame() {
+            if (pos == tamanhoSlider) {
+                clearInterval(id)
+                slider.style.display = 'none'
+            } else {
+                pos++
+                slider.style.right = `${pos}px`
+            }
+        }
+
+        return new Promise(function(resolve) {
+            setInterval(() => resolve(), (tamanhoSlider * 8))
+        })
+    }
+
+    async function executar () {
+        for (let index = 0; index < imagem.length; index++) {
+            console.log(index)
+            await move(imagem[index])
+            if (imagem[index + 1] === undefined) { index = -1 }
+        }
+    }
+
+    executar()
+</script>

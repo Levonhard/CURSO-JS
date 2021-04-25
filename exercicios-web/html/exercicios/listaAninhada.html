@@ -1,0 +1,55 @@
+<h1>Projeto</h1>
+<ul class="tree">
+    <li>
+        <span class="titulo">Backend</span>
+        <ul>
+            <li>
+                <span class="titulo">app</span>
+                <ul>
+                    <li>produto.js</li>
+                    <li>usuario.js</li>
+                    <li>venda.js</li>
+                </ul>
+            </li>
+            <li>
+                <span class="titulo">config</span>
+                <ul>
+                    <li>banco.js</li>
+                    <li>rotas.js</li>
+                    <li>servidor.js</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <span class="titulo">Frontend</span>
+        <ul>
+            <li>
+                <span class="titulo">public</span>
+                <ul>
+                    <li>app.css</li>
+                    <li>app.js</li>
+                    <li>index.html</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<link rel="stylesheet" href="http://files.cod3r.com.br/curso-web/tree.css">
+<script>
+    document.querySelectorAll('.titulo').forEach(tituloPasta => {
+        const tituloExpand = (tituloPasta.innerHTML + ' <span style="color: blue;">[ + ]</span>')
+        const tituloCollapse = (tituloPasta.innerHTML + ' <span style="color: blue;">[ - ]</span>')
+        tituloPasta.innerHTML = tituloCollapse
+        tituloPasta.style.cursor = "pointer"
+
+        tituloPasta.onclick = function(e) {
+            e.preventDefault()
+            const conteudo = tituloPasta.nextElementSibling
+            const exibir = conteudo.style.display
+            conteudo.style.display = exibir === 'none' ? 'initial' : 'none'
+            tituloPasta.innerHTML = tituloPasta.innerHTML === tituloExpand ? tituloCollapse : tituloExpand
+        }
+    })
+</script>
