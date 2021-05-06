@@ -7,7 +7,58 @@
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
-        /* ... */
+        * { font-family: Oswald;}
+        body { margin: 0; background-color: darkgray;}
+        a { text-decoration: none; box-sizing: content-box; vertical-align: middle; color: #ddd;}
+        ul { list-style-type: none; padding-inline-start: 0; margin: 0; }
+
+        .cabecalho {
+            width: 100%;
+            height: 50px;
+            border-bottom: solid 3px cornflowerblue;
+            background-color: #4d4d4d;            
+        }
+
+        .logo img {
+            width: 200px;
+            height: 38px;
+            padding: 5px;
+        }
+
+        .logo, .menu-toggle, .menu, .autenticacao, li {
+            display: inline-block;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        .menu {
+            margin: auto 20px;
+        }
+
+        .menu a {
+            padding: 7px 3px;
+        }
+
+        .menu a:hover {
+            background-color: cornflowerblue;
+            color: #222;
+        }
+
+        .autenticacao {
+            float: right;
+            margin: 11.5px 10px;
+        }
+
+        .botao {
+            border-radius: 5px;
+            padding: 2px 8px;
+        }
+
+        .destaque {
+            background-color: tomato;
+        }
     </style>
 </head>
 
@@ -44,7 +95,12 @@
     </header>
 
     <script>
-        // ...
+        document.querySelectorAll("li>a").forEach(link => {
+            link.onclick = function(e) {
+                const secao = link.getAttribute('href')
+                console.log(secao, window.location)
+            }
+        })
     </script>
 </body>
 
