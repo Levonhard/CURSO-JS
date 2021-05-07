@@ -16,13 +16,18 @@
             width: 100%;
             height: 50px;
             border-bottom: solid 3px cornflowerblue;
-            background-color: #4d4d4d;            
+            background-color: #4d4d4d;          
+            position: relative;
         }
 
         .logo img {
             width: 200px;
             height: 38px;
-            padding: 5px;
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
         }
 
         .logo, .menu-toggle, .menu, .autenticacao, li {
@@ -31,10 +36,19 @@
 
         .menu-toggle {
             display: none;
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
         }
 
         .menu {
-            margin: auto 20px;
+            position: absolute;
+            top: 50%;
+            left: 250px;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
         }
 
         .menu a {
@@ -47,17 +61,35 @@
         }
 
         .autenticacao {
-            float: right;
-            margin: 11.5px 10px;
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
         }
 
         .botao {
             border-radius: 5px;
             padding: 2px 8px;
+            margin-left: 2px;
+            box-shadow: 2px 2px 5px #222;
+        }
+
+        .botao:active {
+            box-shadow: 1px 1px 1px #222;
         }
 
         .destaque {
             background-color: tomato;
+        }
+
+        @media (max-width: 565px) {
+            .autenticacao { display: none; }
+            .menu-toggle { display: inline-block; }
+        }
+
+        @media (max-width: 490px) {
+            .menu { display: none; }
         }
     </style>
 </head>
@@ -95,10 +127,17 @@
     </header>
 
     <script>
+        const url = []
         document.querySelectorAll("li>a").forEach(link => {
             link.onclick = function(e) {
                 const secao = link.getAttribute('href')
-                console.log(secao, window.location)
+                setTimeout(() => {
+                    url.push(window.location.href)
+                    if (url[url.length - 1].includes(secao)) {
+                        link.style.backgroundColor = "cornflowerblue"
+                        link.style.color = "#222"
+                    }
+                }, 1)
             }
         })
     </script>
