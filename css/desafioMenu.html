@@ -55,7 +55,8 @@
             padding: 7px 3px;
         }
 
-        .menu a:hover {
+        .menu a:hover,
+        .menu a.active {
             background-color: cornflowerblue;
             color: #222;
         }
@@ -128,15 +129,25 @@
 
     <script>
         const url = []
+        const urlHistory = []
+
         document.querySelectorAll("li>a").forEach(link => {
             link.onclick = function(e) {
+                urlHistory.push(link)
                 const secao = link.getAttribute('href')
                 setTimeout(() => {
                     url.push(window.location.href)
-                    if (url[url.length - 1].includes(secao)) {
-                        link.style.backgroundColor = "cornflowerblue"
-                        link.style.color = "#222"
+                    if (url[url.length - 1].includes(secao[secao.length - 1])) {
+                        urlHistory[urlHistory.length - 1].classList.add("active")
+                        if (urlHistory[urlHistory.length - 2] != undefined) {
+                            urlHistory[urlHistory.length - 2].classList.remove("active")
+                        }
                     }
+                    if (url.length == 3) {
+                        url.splice(0, 1)
+                        urlHistory.splice(0, 1)
+                    }
+                    console.log(urlHistory)
                 }, 1)
             }
         })
