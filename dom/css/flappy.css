@@ -1,0 +1,52 @@
+[wm-flappy] {
+    width: 800px;
+    height: 500px;
+    background-color: skyblue;
+    display: flex;
+    flex-direction: row-reverse;
+    position: relative;
+    overflow: hidden;
+}
+
+[wm-pipe=container] {
+    display: flex;
+    flex-direction: column;
+    width: 80px;
+    height: 100%;
+    justify-content: space-between;
+    position: absolute;
+}
+
+[wm-pipe=object] {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+[wm-pipe=body] {
+    width: 85%;
+    height: 100%;
+    background: linear-gradient(to right, green, lightgreen);
+    border-left: solid 1px darkgreen;
+    border-right: solid 1px darkgreen;
+}
+
+[wm-pipe=edge] {
+    width: 100%;
+    height: 30px;
+    background: linear-gradient(to right, green, lightgreen);
+    border: solid 1px darkgreen;
+}
+
+[wm-pipe=body],
+[wm-pipe=edge] {
+    box-sizing: border-box;
+}
+
+[wm-pipe-orientation=up] {
+    flex-direction: column-reverse;
+}
+
+[wm-pipe-orientation=down] {
+    flex-direction: column;
+}
