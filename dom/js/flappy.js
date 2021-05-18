@@ -7,7 +7,7 @@ function randomHeight () {
 function pipeConstructor() {
     const pipeContainer = document.createElement('div')
     pipeContainer.setAttribute('wm-pipe', 'container')
-    gameFrame.appendChild(pipeContainer)
+    //gameFrame.appendChild(pipeContainer)
     
     const pipeObject = document.createElement('div')
     pipeObject.setAttribute('wm-pipe', 'object')
@@ -37,21 +37,24 @@ function pipeConstructor() {
 function move(slider) {
     let id = null
     let pos = (0 - slider.offsetWidth)
+    gameFrame.appendChild(slider)
     clearInterval(id)
-    id = setInterval(frame, 8)
+    id = setInterval(frame, 10)
     function frame() {
-        if (pos == 800) {
+        if (pos == slider.parentNode.offsetWidth) {
             clearInterval(id)
-            slider.style.display = 'none'
+            slider.remove()
         } else {
             pos++
             slider.style.right = `${pos}px`
         }
     }
-
-    //return new Promise(function(resolve) {
-    //    setInterval(() => resolve(), (800 * 8))
-    //})
 }
 
-setInterval(() => move(pipeConstructor()), 4000)
+//function moveLevel(level) {
+//    setInterval(() => move(pipeConstructor()), level)
+//}
+
+//moveLevel(4000)
+
+move(pipeConstructor())
